@@ -1697,5 +1697,5 @@ module.exports = {
   "yodeled": "yodelled",
   "yodeling": "yodelling",
   "yogurt": "yoghurt",
-  "yogurts": "yoghurts"
+  "yogurts": "yoghurts",
 }
