@@ -206,4 +206,12 @@ suite("Unit Tests", () => {
     );
     done();
   });
+
+  test("Highlight translation in We watched the footie match for a while.", done => {
+    let originalString = 'We watched the footie match for a while.';
+    let translatedString = 'We watched the soccer match for a while.';
+    let highlightedString = 'We watched the <span class="highlight">soccer</span> match for a while.'
+    assert.equal(translate.getHighlightedTranslatedString(translatedString, originalString), highlightedString);
+    done();
+  })
 });
