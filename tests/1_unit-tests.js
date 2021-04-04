@@ -45,6 +45,11 @@ suite("Unit Tests", () => {
     done();
   });
 
+  test("Translate Like a high tech Rube Goldberg machine. to British English", done => {
+    assert.equal(translate.americanToBritish("Like a high tech Rube Goldberg machine."), "Like a high tech Heath Robinson device.")
+    done();
+  })
+
   test("Translate To play hooky means to skip class or work. to British English", (done) => {
     assert.equal(
       translate.americanToBritish("To play hooky means to skip class or work."),
