@@ -44,10 +44,10 @@ module.exports = function(app) {
     };
 
     const getInvalidLocaleAndTextInputError = () => {
-      if (!originalString) return {
+      if (originalString === '') return {
         error: 'No text to translate'
       };
-      if (!locale) return {
+      if (!locale | !originalString) return {
         error: 'Required field(s) missing'
       };
       if (locale !== 'american-to-british' && locale !== 'british-to-american') return {

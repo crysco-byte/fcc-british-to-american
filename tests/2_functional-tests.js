@@ -43,7 +43,7 @@ suite('Functional Tests', () => {
         locale: 'british-to-american'
       })
       .end((err, res) => {
-        assert.equal(res.body.error, 'No text to translate');
+        assert.equal(res.body.error, 'Required field(s) missing');
       })
     done();
   })
