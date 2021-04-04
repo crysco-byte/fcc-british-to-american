@@ -2,7 +2,7 @@
 
 const Translator = require("../components/translator.js");
 
-module.exports = function (app) {
+module.exports = function(app) {
   const translator = new Translator();
 
   app.route("/api/translate").post((req, res) => {
@@ -20,7 +20,10 @@ module.exports = function (app) {
           text: originalString,
           translation: "Everything looks good to me!",
         });
-      return res.send({ text: originalString, translation: highlightedString });
+      return res.send({
+        text: originalString,
+        translation: highlightedString
+      });
     };
 
     const sendAmericanToBritishTranslation = () => {
@@ -34,23 +37,26 @@ module.exports = function (app) {
           text: originalString,
           translation: "Everything looks good to me!",
         });
-      return res.send({ text: originalString, translation: highlightedString });
+      return res.send({
+        text: originalString,
+        translation: highlightedString
+      });
     };
 
     const getInvalidLocaleAndTextInputError = () => {
-      if ((originalString === "") | (originalString == null)) {
-        return { error: "No text to translate" };
-      } else if ((locale === "") | (locale == null)) {
-        return { error: "Required field(s) missing" };
-      } else if (
-        (locale !== "american-to-british") |
-        (locale !== "british-to-american")
-      ) {
-        return { error: "Invalid value for locale field" };
-      } else {
-        return null;
-      }
+      if (!originalString) return {
+        error: 'No text to translate'
+      };
+      if (!locale) return {
+        error: 'Required field(s) missing'
+      };
+      if (locale !== 'american-to-british' && locale !== 'british-to-american') return {
+        error: 'Invalid value for locale field'
+      };
+      return null
     };
+
+    let error = getInvalidLocaleAndTextInputError();
 
     if (getInvalidLocaleAndTextInputError() == null) {
       if (locale === "american-to-british") {
@@ -59,7 +65,7 @@ module.exports = function (app) {
         sendBritishToAmericanTranslation();
       }
     } else {
-      return getInvalidLocaleAndTextInputError();
+      return res.send(error);
     }
   });
 };
